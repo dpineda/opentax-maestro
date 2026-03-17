@@ -1,0 +1,34 @@
+<div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+  <div class="max-w-full overflow-x-auto">
+    <table class="min-w-full">
+      <!-- Table Header -->
+      <thead class="border-b border-gray-100 dark:border-white/[0.05]">
+        <tr>
+          <th class="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Page</th>
+          <th class="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">Link</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody class="divide-y divide-gray-100 dark:divide-white/[0.05]">
+        @for (order of tableData; track $index) {
+        <tr>
+          <td class="px-5 py-4 sm:px-6 text-start">
+            <div class="flex items-center gap-3">
+              <div>
+                <span class="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                  {{ order.name }}
+                </span>
+              </div>
+            </div>
+          </td>
+          <td class="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+            <span class="block text-gray-500 text-theme-xs dark:text-gray-400">
+              <a [routerLink]="order.link">{{order.link}}</a>
+            </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

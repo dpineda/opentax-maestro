@@ -1,0 +1,32 @@
+<div class="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-md">
+  <h2 class="mb-6 text-2xl font-bold text-gray-800">Personal Information Checklist</h2>
+  <ul>
+    @for (item of items; track $index) {
+    <li  class="mb-6 pb-4 border-b border-gray-200 last:border-b-0 last:mb-0 last:pb-0 flex flex-col">
+      <span class="text-lg font-semibold text-blue-600 flex items-center gap-2">
+        {{ item.title }}
+        @if (item.completed) {
+          <svg class="mt-2 ml-auto text-green-500" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M9.00016 16.2001L4.80016 12.0001L3.40016 13.4001L9.00016 19.0001L21.0002 7.00006L19.6002 5.60006L9.00016 16.2001Z" fill="currentColor"/>
+          </svg>
+        }
+        @else {
+          <svg class="mt-2 ml-auto text-gray-400" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M9.00016 16.2001L4.80016 12.0001L3.40016 13.4001L9.00016 19.0001L21.0002 7.00006L19.6002 5.60006L9.00016 16.2001Z" fill="currentColor"/>
+          </svg>
+        }
+      </span>
+      <p class="mt-2 text-gray-600">{{ item.description }}</p>
+      <div class="flex justify-end">
+        <a [routerLink]="['/information', item.title.toLowerCase().replace(' ', '-')]"
+          class="mt-4 px-4 py-2 w-[120px] text-center bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          Edit
+        </a>
+      </div>
+
+    </li>
+  }
+  </ul>
+</div>

@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.component';
+import { InformationComponent } from './pages/information/information.component';
+import { EditInformationComponent } from './pages/information/edit-information.component';
+import { FederalComponent } from './pages/federal/federal.component';
+import { EditFederalComponent } from './pages/federal/edit-federal.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FormElementsComponent } from './pages/forms/form-elements/form-elements.component';
 import { BasicTablesComponent } from './pages/tables/basic-tables/basic-tables.component';
@@ -18,6 +22,7 @@ import { VideosComponent } from './pages/ui-elements/videos/videos.component';
 import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/auth-pages/sign-up/sign-up.component';
 import { CalenderComponent } from './pages/calender/calender.component';
+import { ShowcaseComponent } from './pages/showcase/showcase.component';
 
 export const routes: Routes = [
   {
@@ -31,9 +36,29 @@ export const routes: Routes = [
         title: 'Dashboard | OpenTax Maestro',
       },
       {
+        path:'information',
+        component: InformationComponent,
+        title:'Personal Information | OpenTax Maestro'
+      },
+      {
+        path:'information/:item',
+        component: EditInformationComponent,
+        title:'Edit Information | OpenTax Maestro'
+      },
+      {
+        path:'federal',
+        component: FederalComponent,
+        title:'Federal Items | OpenTax Maestro'
+      },
+      {
+        path:'federal/:item',
+        component: EditFederalComponent,
+        title:'Edit Federal Item | OpenTax Maestro'
+      },
+      {
         path:'calendar',
         component:CalenderComponent,
-        title:'Calender | OpenTax Maestro'
+        title:'Calendar | OpenTax Maestro'
       },
       {
         path:'profile',
@@ -100,6 +125,11 @@ export const routes: Routes = [
         path:'videos',
         component:VideosComponent,
         title:'Videos | OpenTax Maestro'
+      },
+      {
+        path:'showcase',
+        component:ShowcaseComponent,
+        title:'Showcase | OpenTax Maestro'
       },
     ]
   },

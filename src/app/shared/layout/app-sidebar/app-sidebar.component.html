@@ -25,15 +25,8 @@
     <a routerLink="/">
       @if ((isExpanded$ | async) || (isHovered$ | async) || (isMobileOpen$ | async)) {
         <img
-        class="dark:hidden w-[50px] h-[50px] inline"
+        class="w-[50px] h-[50px] inline"
         src="/images/logo/logo.svg"
-        alt="Logo"
-        width="50"
-        height="50"
-        />
-        <img
-        class="hidden dark:inline w-[50px] h-[50px]"
-        src="/images/logo/logo-dark.svg"
         alt="Logo"
         width="50"
         height="50"
