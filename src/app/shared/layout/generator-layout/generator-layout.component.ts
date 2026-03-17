@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AiSidebarHistoryComponent } from '../../components/ai/ai-sidebar-history/ai-sidebar-history.component';
+import { AiSidebarHistoryComponent } from '../../components/ia/ai-sidebar-history/ai-sidebar-history.component';
 
 @Component({
   selector: 'app-generator-layout',
