@@ -1,9 +1,77 @@
-<div class="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-md">
-  <h2 class="mb-6 text-2xl font-bold text-gray-800">Edit {{ item }} Information</h2>
-  <p class="text-gray-600 mb-4">Update your {{ item }} details below.</p>
-  <!-- Form fields for editing information can be added here -->
-  <div class="mt-6">
-    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save Changes</button>
-    <button class="ml-2 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
+  
+<app-page-breadcrumb pageTitle="Individual Information" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+  <app-component-card title="Personal Information">
+    <div class="space-y-6">
+      @for (field of formSchema; track $index) {
+  
+        <div>
+        @switch (field.type) {
+
+          @case ('text') {
+            <app-label [for]="field.name">{{ field.label }}</app-label>
+            <app-input-field
+              [id]="field.name"
+              [name]="field.name"
+              [placeholder]="field.placeholder"
+              [type]="field.inputType || 'text'"
+              [value]="form.get(field.name)?.value"
+              (input)="form.get(field.name)?.setValue($any($event.target).value)"
+            ></app-input-field>
+          }
+
+          @case('select') {
+            <app-label [for]="field.name">{{ field.label }}</app-label>
+            <app-select
+              [id]="field.name"
+              [options]="field.options || []"
+              [value]="form.get(field.name)?.value"
+              className="dark:bg-dark-900"
+              (valueChange)="form.get(field.name)?.setValue($event)"
+            ></app-select>
+            }
+
+            @case ('date') {
+              <app-label [for]="field.name">{{ field.label }}</app-label>
+              <app-date-picker
+                [id]="field.name"
+                [placeholder]="field.placeholder"
+                (dateChange)="form.get(field.name)?.setValue($event.dateStr)"
+              ></app-date-picker>
+            }
+
+            @case ('checkbox') {
+              <app-checkbox
+                [checked]="form.get(field.name)?.value"
+                (checkedChange)="form.get(field.name)?.setValue($event)"
+                [label]="field.label"
+                [id]="field.name"
+              ></app-checkbox>
+            }
+
+            @case ('radio') {
+              <app-label [for]="field.name">{{ field.label }}</app-label>
+              <div class="flex flex-wrap items-center gap-8">
+                @for (opt of field.options; track $index) {
+                  <app-radio
+                  [name]="field.name"
+                  [value]="opt.value"
+                  [label]="opt.label"
+                  [checked]="form.get(field.name)?.value === opt.value"
+                  (change)="form.get(field.name)?.setValue(opt.value)"
+                  ></app-radio>
+                }
+              </div>
+            }
+        }
+        </div>
+      }
+        <div class="mt-6">
+          <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save Changes</button>
+          <button class="ml-2 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
+        </div>
+      </div>
+    </app-component-card>
   </div>
-</div>
+</form>
