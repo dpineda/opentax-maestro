@@ -4,7 +4,7 @@ import { ModalService } from '../../../services/modal.service';
 
 import { ModalComponent } from '../../ui/modal/modal.component';
 import { ButtonComponent } from '../../ui/button/button.component';
-import { DataService, IndividualInfo } from '../../../services/data.service';
+import { DataService, IndividualData } from '../../../services/data.service';
 
 @Component({
   selector: 'app-user-meta-card',
@@ -26,7 +26,7 @@ export class UserMetaCardComponent {
     });
   }
   
-  data: IndividualInfo | null = null;
+  data: IndividualData | null = null;
   isOpen = false;
   openModal() { this.isOpen = true; }
   closeModal() { this.isOpen = false; }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ThemeToggleButtonComponent } from '../../components/common/theme-toggle/theme-toggle-button.component';
 import { NotificationDropdownComponent } from '../../components/header/notification-dropdown/notification-dropdown.component';
 import { UserDropdownComponent } from '../../components/header/user-dropdown/user-dropdown.component';
+import { TaxReturnsComponent } from "../../components/common/tax-returns/tax-returns.component";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ import { UserDropdownComponent } from '../../components/header/user-dropdown/use
     ThemeToggleButtonComponent,
     NotificationDropdownComponent,
     UserDropdownComponent,
-  ],
+    TaxReturnsComponent
+],
   templateUrl: './app-header.component.html',
 })
 export class AppHeaderComponent {

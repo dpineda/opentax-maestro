@@ -14,6 +14,7 @@ export interface Dependent extends Persona {
 
 export interface IndividualData extends Persona {
   filingStatus: 'single' | 'married_filing_jointly' | 'married_filing_separately' | 'head_of_household';
+  email: string;
   spouse?: Persona;
   dependents?: Dependent[];
   income?: {

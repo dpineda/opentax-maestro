@@ -100,4 +100,21 @@ export class EditInformationComponent {
     });
   }
 
+  onSubmit(formData: any) {
+    console.log('Form submitted with data:', formData);
+    let data = this.dataService.getData();  
+    data.firstName= formData.firstName;
+    data.lastName= formData.lastName;
+    //data.middleInitial= formData.middleInitial;
+    //data.suffix= formData.suffix;
+    //data.birthDate= formData.birthDate;
+    data.ssn= formData.ssn;
+    //data.ssnNotValidForWork= formData.ssnNotValidForWork;
+    //data.occupation= formData.occupation;
+    //data.state= formData.state;
+    //data.liveInAnotherState= formData.liveInAnotherState;
+    //data.servedInArmedForces= formData.servedInArmedForces;
+    this.dataService.saveData(data);
+  }
+
 }
