@@ -14,7 +14,6 @@ import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { LineChartComponent } from './pages/charts/line-chart/line-chart.component';
 import { BarChartComponent } from './pages/charts/bar-chart/bar-chart.component';
 import { AlertsComponent } from './pages/ui-elements/alerts/alerts.component';
-import { AvatarElementComponent } from './pages/ui-elements/avatar-element/avatar-element.component';
 import { BadgesComponent } from './pages/ui-elements/badges/badges.component';
 import { ButtonsComponent } from './pages/ui-elements/buttons/buttons.component';
 import { ImagesComponent } from './pages/ui-elements/images/images.component';
@@ -100,11 +99,6 @@ export const routes: Routes = [
         path:'alerts',
         component:AlertsComponent,
         title:'Alerts | OpenTax Maestro'
-      },
-      {
-        path:'avatars',
-        component:AvatarElementComponent,
-        title:'Avatars | OpenTax Maestro'
       },
       {
         path:'badge',
