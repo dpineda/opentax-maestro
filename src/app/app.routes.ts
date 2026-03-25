@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.component';
+import { WagesIncomeComponent } from './pages/wages-income/wages-income.component';
 import { InformationComponent } from './pages/information/information.component';
 import { EditInformationComponent } from './pages/information/edit-information.component';
 import { FederalComponent } from './pages/federal/federal.component';
@@ -33,6 +34,11 @@ export const routes: Routes = [
         component: EcommerceComponent,
         pathMatch: 'full',
         title: 'Dashboard | OpenTax Maestro',
+      },
+      {
+        path: 'wages-income',
+        component: WagesIncomeComponent,
+        title: 'Wages & Income | OpenTax Maestro',
       },
       {
         path:'information',

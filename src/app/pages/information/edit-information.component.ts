@@ -1,16 +1,11 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PageBreadcrumbComponent } from '../../shared/components/common/page-breadcrumb/page-breadcrumb.component';
 import { ComponentCardComponent } from "../../shared/components/common/component-card/component-card.component";
-import { LabelComponent } from '../../shared/components/form/label/label.component';
-import { InputFieldComponent } from '../../shared/components/form/input/input-field.component';
-import { SelectComponent } from '../../shared/components/form/select/select.component';
-import { DatePickerComponent } from '../../shared/components/form/date-picker/date-picker.component';
-import { CheckboxComponent } from '../../shared/components/form/input/checkbox.component';
-import { RadioComponent } from '../../shared/components/form/input/radio.component';
 import { DataService } from '../../shared/services/data.service';
+import { FormSchema, FormComponent } from '../../shared/components/form/form.component';
 
 @Component({
   selector: 'app-edit-information',
@@ -20,20 +15,14 @@ import { DataService } from '../../shared/services/data.service';
     ReactiveFormsModule,
     PageBreadcrumbComponent,
     ComponentCardComponent,
-    LabelComponent,
-    InputFieldComponent,
-    SelectComponent,
-    DatePickerComponent,
-    CheckboxComponent,
-    RadioComponent,
-    FormsModule
+    FormsModule,
+    FormComponent
 ],
 })
 export class EditInformationComponent {
 
   item: string | null = null;
-  form: FormGroup;
-  formSchema = [
+  formSchema: FormSchema[] = [
     { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'Enter first name', validators: [Validators.required] },
     { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Enter last name', validators: [Validators.required] },
     { name: 'middleInitial', label: 'Middle Initial', type: 'text', placeholder: 'M', inputType: 'text', validators: [Validators.maxLength(1)] },
@@ -109,25 +98,6 @@ export class EditInformationComponent {
     this.route.paramMap.subscribe(params => {
       this.item = params.get('item');
     });
-    this.form = this.fb.group({});
-    this.buildForm();
   }
 
-  buildForm() {
-    for (const field of this.formSchema) {
-      this.form.addControl(
-        field.name,
-        this.fb.control('', field.validators || [])
-      );
-    }
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      // Handle form submission (e.g., send to API or update state)
-      this.dataService.saveData(this.form.value);
-    } else {
-      this.form.markAllAsTouched();
-    }
-  }
 }

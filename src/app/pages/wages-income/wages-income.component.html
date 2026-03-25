@@ -1,0 +1,8 @@
+<app-page-breadcrumb pageTitle="Wages & Income" />  
+<div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+<app-component-card title="Wages & Income W-2, 1099 and other income." desc="Enter your wage and income information as reported on your W-2, 1099, and other income statements. This section helps ensure your federal return is accurate and maximizes your eligible credits and deductions.">
+  <div class="space-y-6">
+    <app-form [formSchema]="formSchema" (onSubmit)="onSubmit($event)" />
+  </div>
+  </app-component-card>
+</div>

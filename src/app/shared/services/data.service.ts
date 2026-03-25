@@ -1,50 +1,48 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface Dependent {
+export interface Persona {
   firstName: string;
   lastName: string;
   ssn: string;
-  relationship: string;
   dateOfBirth: string;
 }
 
-export interface IndividualInfo {
-  firstName: string;
-  lastName: string;
-  ssn: string;
-  dateOfBirth: string;
-  spouse?: {
-    firstName: string;
-    lastName: string;
-    ssn: string;
-    dateOfBirth: string;
-  };
+export interface Dependent extends Persona {
+  relationship: string;
+}
+
+export interface IndividualData extends Persona {
+  filingStatus: 'single' | 'married_filing_jointly' | 'married_filing_separately' | 'head_of_household';
+  spouse?: Persona;
   dependents?: Dependent[];
-  wagesIncome?: {
-    w2Wages: number;
-    interestIncome: number;
-    otherIncome: number;
+  income?: {
+    w2: number;
+    interest: number;
+    other: number;
   };
-  deductionsCredits?: {
-    deductionType: string;
-    deductionAmount: number;
-    credits: { [key: string]: number };
-  };
+  deductions?: { type: string; amount: number; }[];
+  credits: { type: string; amount: number }[];
 }
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
   private readonly STORAGE_KEY = 'data';
-  private dataSubject = new BehaviorSubject<IndividualInfo | null>(this.loadData());
+  private dataSubject = new BehaviorSubject<IndividualData | null>(this.loadData());
   data$ = this.dataSubject.asObservable();
 
-  private loadData(): IndividualInfo | null {
+  private loadData(): IndividualData | null {
     const json = localStorage.getItem(this.STORAGE_KEY);
     return json ? JSON.parse(json) : null;
   }
 
-  saveData(data: IndividualInfo) {
+  getData(): IndividualData {
+    return this.dataSubject.getValue()  || {} as IndividualData;
+  }
+
+  saveData(data: IndividualData) {
+    const existingData = this.dataSubject.getValue();
+    data = { ...existingData, ...data }; // Extend existing data with new data
     this.dataSubject.next(data);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
   }
