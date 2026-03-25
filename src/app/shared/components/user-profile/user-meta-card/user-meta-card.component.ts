@@ -4,6 +4,7 @@ import { ModalService } from '../../../services/modal.service';
 
 import { ModalComponent } from '../../ui/modal/modal.component';
 import { ButtonComponent } from '../../ui/button/button.component';
+import { DataService, IndividualInfo } from '../../../services/data.service';
 
 @Component({
   selector: 'app-user-meta-card',
@@ -16,9 +17,16 @@ import { ButtonComponent } from '../../ui/button/button.component';
   styles: ``
 })
 export class UserMetaCardComponent {
-
-  constructor(public modal: ModalService) {}
-
+  
+  constructor(public modal: ModalService, private dataService: DataService) {
+    this.dataService.data$.subscribe(data => {
+      this.data = data;
+      this.user.firstName = data?.firstName || this.user.firstName;
+      this.user.lastName = data?.lastName || this.user.lastName;
+    });
+  }
+  
+  data: IndividualInfo | null = null;
   isOpen = false;
   openModal() { this.isOpen = true; }
   closeModal() { this.isOpen = false; }

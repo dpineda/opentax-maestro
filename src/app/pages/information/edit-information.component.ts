@@ -10,6 +10,7 @@ import { SelectComponent } from '../../shared/components/form/select/select.comp
 import { DatePickerComponent } from '../../shared/components/form/date-picker/date-picker.component';
 import { CheckboxComponent } from '../../shared/components/form/input/checkbox.component';
 import { RadioComponent } from '../../shared/components/form/input/radio.component';
+import { DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-edit-information',
@@ -24,7 +25,7 @@ import { RadioComponent } from '../../shared/components/form/input/radio.compone
     SelectComponent,
     DatePickerComponent,
     CheckboxComponent,
-        RadioComponent,
+    RadioComponent,
     FormsModule
 ],
 })
@@ -104,7 +105,7 @@ export class EditInformationComponent {
     ], validators: [Validators.required] },
   ];
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private dataService: DataService) {
     this.route.paramMap.subscribe(params => {
       this.item = params.get('item');
     });
@@ -124,7 +125,7 @@ export class EditInformationComponent {
   onSubmit() {
     if (this.form.valid) {
       // Handle form submission (e.g., send to API or update state)
-      console.log('Form submitted:', this.form.value);
+      this.dataService.saveData(this.form.value);
     } else {
       this.form.markAllAsTouched();
     }
